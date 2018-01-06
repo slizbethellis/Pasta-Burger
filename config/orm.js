@@ -1,15 +1,6 @@
 // Import MySQL connection.
 var connection = require("../config/connection.js");
 
-// Makes an array of question marks based on object length, then converts to a string
-function makeQuestionMarks(num) {
-  var arr = [];
-  for (var i = 0; i < num; i++) {
-    arr.push("?");
-  }
-  return arr.toString();
-}
-
 // Converts object key/value pairs to SQL syntax
 function objToSql(ob) {
   var arr = [];
@@ -43,11 +34,7 @@ var orm = {
     queryString += " (";
     queryString += cols.toString();
     queryString += ") ";
-    queryString += "VALUES (";
-    queryString += makeQuestionMarks(vals.length);
-    queryString += ", NOW()) ";
-
-    console.log(queryString);
+    queryString += "VALUES (?, NOW()) ";
 
     connection.query(queryString, vals, function(err, result) {
       if (err) {
@@ -65,7 +52,6 @@ var orm = {
     queryString += " WHERE ";
     queryString += condition;
 
-    console.log(queryString);
     connection.query(queryString, function(err, result) {
       if (err) {
         throw err;

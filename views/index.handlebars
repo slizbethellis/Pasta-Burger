@@ -1,0 +1,33 @@
+<h1>Pasta Burger</h1>
+
+<h2>Cavatappi Cat wants you to eat pasta burgers! (and wafflewiches!)</h2>
+
+<h3>Uneaten Burgers</h3>
+<ul>
+  {{#each burgers}}
+    {{#unless devoured}}
+      {{burger_name}}
+      <button class="eat-burger" data-id="{{id}}">
+    		Eat it!
+    	</button>
+    {{/unless}}
+  {{/each}}
+</ul>
+
+<h3>Eaten Burgers</h3>
+<ul>
+  {{#each burgers}}
+    {{#if devoured}}
+      {{burger_name}}
+    {{/if}}
+  {{/each}}
+</ul>
+
+<h2>Add a Pasta Burger!</h2>
+<form class="create-burger">
+  <div class="form-group">
+    <input type="text" id="burg" name="name">
+  </div>
+
+  <button type="submit">Submit Pasta Burger</button>
+</form>
