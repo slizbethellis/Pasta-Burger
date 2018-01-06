@@ -45,7 +45,7 @@ var orm = {
     queryString += ") ";
     queryString += "VALUES (";
     queryString += makeQuestionMarks(vals.length);
-    queryString += ") ";
+    queryString += ", NOW()) ";
 
     console.log(queryString);
 
@@ -57,7 +57,7 @@ var orm = {
       cb(result);
     });
   },
-  
+
   updateOne: function(table, objColVals, condition, cb) {
     var queryString = "UPDATE " + table;
     queryString += " SET ";
